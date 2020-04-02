@@ -29,7 +29,7 @@ for line in sys.stdin:
     if article.split(':')[0] in excluded_words:
         continue
 
-    if article[0].islower()
+    if article[0].islower():
         continue
 
     if article.split('.')[1] in excluded_files:
