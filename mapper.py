@@ -4,7 +4,7 @@ import sys
 import os
 import urllib
 
-date = os.environ["map.input.file"].split('-')[1].split('-')[0]
+date = os.environ["map.input.file"].split('-')[1]
 excluded_words = ['Media', 'Special', 'Talk', 'User', 'User_talk', 
                   'Project', 'Project_talk', 'File', 'File_talk', 
                   'MediaWiki', 'MediaWiki_talk', 'Template', 
