@@ -35,4 +35,4 @@ for line in sys.stdin:
         else:
             second_half += dates_to_views[dates[i]]
 
-    print(f"{article}\t{str(dates)}\t{str(ordered_views)}\t{sum(ordered_views)}\t{second_half - first_half}")
+    print(article + "\t" + str(dates) + "\t" + str(ordered_views) + "\t" + str(sum(ordered_views)) + "\t" + str(second_half - first_half))
