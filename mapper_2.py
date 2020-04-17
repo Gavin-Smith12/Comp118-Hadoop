@@ -21,5 +21,4 @@ for line in sys.stdin:
         article_list[article] = {"name":article, "date":[date], "views":[views]}
 
 for page in article_list:
-    #print(f"{article['name']} {article['date']} {article['views']}")
     print(article_list[page]["name"] + " " + str(article_list[page]["date"]) + " " + str(article_list[page]["views"]))

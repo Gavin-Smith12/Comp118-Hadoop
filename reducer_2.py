@@ -30,7 +30,7 @@ for line in sys.stdin:
     ordered_views = []
     for i in range(0, len(dates)):
         ordered_views.append(dates_to_views[dates[i]])
-        if dates[i] < 20160608:
+        if dates[i] < 20160603:
             first_half += dates_to_views[dates[i]]
         else:
             second_half += dates_to_views[dates[i]]
