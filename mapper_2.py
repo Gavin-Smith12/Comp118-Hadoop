@@ -8,15 +8,17 @@ import os
 article_list = {}
 
 for line in sys.stdin:
-    words = line.split()
+    line = line.strip()
+    words = line.split('}')
     if len(words) < 2:
         continue
-    split2 = words[0].split('}')
+    split2 = words[1].split(' ')
     if len(split2) < 2:
         continue
-    article = words[0].split('}')[0]
-    date = words[0].split('}')[1]
-    views = words[1]
+
+    article = words[0]
+    date = words[1].split(' ')[0]
+    views = words[1].split(' ')[1]
 
     if int(views) < 10:
         continue
