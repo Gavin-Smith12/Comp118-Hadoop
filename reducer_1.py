@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import os
 import sys
@@ -10,11 +10,19 @@ articles = {}
 
 for line in sys.stdin:
 
+    if line == "":
+        continue
     # 
+    line = line.strip()
     split = line.split('}')
     article = split[0]
-    date = split[1].split()[0]
-    views = split[1].split()[1]
+    if len(split) < 2:
+        continue
+    split2 = split[1].split('\t')
+    if len(split2) < 2:
+        continue
+    date = split[1].split('\t')[0]
+    views = split[1].split('\t')[1]
 
     try:
         viewNum = int(views)

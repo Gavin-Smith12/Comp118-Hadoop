@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import sys
 import os
@@ -24,6 +24,9 @@ for line in sys.stdin:
     article = urllib.parse.unquote_plus(words[1])
     views = words[2]
 
+    if not (article[0].isalnum()):
+        continue
+
     if project != 'en':
         continue
 
@@ -40,4 +43,4 @@ for line in sys.stdin:
     if article in excluded_pages:
         continue
 
-    print(article + "}" + date + " " + views)
+    print(article + "}" + date + "\t" + views)

@@ -4,17 +4,36 @@ import sys
 import os
 import ast
 
-# Modern_art [20160601,20160609] [50,75] input
+# Modern_art [20160601, 20160609] [50,75] input
 # Modern_art\t[20160609,20160601]\t[75,50]\t125\t25 output
+
+article_list = {}
 
 for line in sys.stdin:
     dates_to_views = {}
 
-    words = line.split()
+    line = line.strip()
+    words = line.split('\t')
+    if len(words) < 4:
+        continue
     article = words[0]
-    dates = ast.literal_eval(words[1])
-    views = ast.literal_eval(words[2])
-    
+    date = words[1]
+    views = words[2]
+    popularity = int(words[3])
+
+    if article in article_list:
+        article_list[article]["date"].append(date)
+        article_list[article]["views"].append(views)
+        article_list[article]["total_views"] += int(views)
+        article_list[article]["popularity"] += popularity
+    else:
+        article_list[article] = {"name":article, "date":[date], "views":[views], "total_views":int(views), "popularity":int(popularity)}
+
+for article in article_list:
+
+    dates = article_list[article]["date"]
+    views = article_list[article]["views"]
+
     # maps dates to number of views
     for i in range(0,len(dates)):
         dates_to_views[int(dates[i])] = int(views[i])
@@ -23,16 +42,9 @@ for line in sys.stdin:
     # dates is sorted
     dates.sort()
 
-    first_half = 0
-    second_half = 0
-
     # views is ordered
     ordered_views = []
     for i in range(0, len(dates)):
         ordered_views.append(dates_to_views[dates[i]])
-        if dates[i] < 20160603:
-            first_half += dates_to_views[dates[i]]
-        else:
-            second_half += dates_to_views[dates[i]]
 
-    print(article + "\t" + str(dates) + "\t" + str(ordered_views) + "\t" + str(sum(ordered_views)) + "\t" + str(second_half - first_half))
+    print(article + "\t" + str(dates) + "\t" + str(ordered_views) + "\t" + str(article_list[article]["total_views"]) + "\t" + str(article_list[article]["popularity"]))
